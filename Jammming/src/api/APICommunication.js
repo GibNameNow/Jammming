@@ -1,8 +1,8 @@
 import React from "react";
 
-const client_id = '';
-const client_secret = '';
 const redirect_uri = 'http://127.0.0.1:3000';
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
 
 let accessToken = '';
 
@@ -108,7 +108,7 @@ const APICommunication = {
   },
 
 
-  
+
 }
 
 export default APICommunication;

@@ -10,7 +10,7 @@ const SongList = (props) => {
         {
             props.searchResults.map((track) => {
                 return (
-                    <ListElement track={track}/>
+                    <ListElement track={track} onAdd={props.onAdd} onRemove={props.onRemove} isAddAction={props.isAddAction}/>
                 );
             }
             )

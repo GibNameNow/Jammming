@@ -1,6 +1,27 @@
+import { useCallback } from "react";
 import "./ListElement.css";
 
 const ListElement = (props) => {
+
+    const triggerAction = useCallback((event) => {
+        if(props.isAddAction){
+            props.onAdd(props.track);
+        } else {
+            props.onRemove(props.track);
+        }
+        
+    }, [props.addTrack, props.track, props.isAddAction]);
+
+    const renderAction = () => {
+        if(props.isAddAction){
+            return (
+                <button onClick={triggerAction}>+</button>
+            );
+        }
+        return (
+            <button onClick={triggerAction}>-</button>
+        );
+    }
 
     return (
         <div className="ListElement">
@@ -12,7 +33,7 @@ const ListElement = (props) => {
                     <h3>Album: {props.track.album}</h3>
                 </div>
             </div>
-            <button>+</button>
+            {renderAction()}
         </div>
     );
 }

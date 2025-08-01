@@ -14,7 +14,13 @@ function App() {
   });
 
   const addTrack = useCallback((track) => {
-    APICommunication.setTracksPlaylist([])
+    setTracksPlaylist((prevTracks) => [ ...prevTracks, track]);
+  });
+
+  const removeTrack = useCallback((trackToRemove) => {
+    setTracksPlaylist((prevTracks) => 
+      tracksPlaylist.filter((track) => track !== trackToRemove)
+    );
   });
 
   return (
@@ -25,11 +31,10 @@ function App() {
       </header>
       <main>
         <div className='Lists'>
-          <SongList searchResults={searchResults}></SongList>
-          <SongList searchResults={searchResults}></SongList>
+          <SongList searchResults={searchResults} onAdd={addTrack} isAddAction={true}></SongList>
+          <SongList searchResults={tracksPlaylist} onRemove={removeTrack} isAddAction={false}></SongList>
         </div>
       </main>
-      
     </div>
   )
 }
