@@ -1,7 +1,37 @@
 .ListElement {
-    border: 2px solid blue;
+    border: 5px solid blue;
     text-align: left;
     margin-left: 2rem;
+    margin-bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+h3 {
+    flex-basis: 100%;
+}
+
+.btn-add {
+    background-color: rgb(79, 70, 229);
+}
+
+.btn-add:hover {
+    background-color: rgb(67, 56, 202);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn-remove {
+    background-color: rgb(219, 61, 70);
+}
+
+.btn-remove:hover {
+    background-color: rgb(229, 70, 79);
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.ListElement button:active {
+    transform: scale(0.95);
 }

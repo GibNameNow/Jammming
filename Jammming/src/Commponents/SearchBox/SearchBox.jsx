@@ -18,9 +18,8 @@ const SearchBox = (props) => {
 
     return (
         <div className="SearchBox">
-            <h1>TEST</h1>
-            <input id="SearchInput" type="text" placeholder="Enter Artist please...!!" onChange={updateSearchTerm} />
-            <input id="submit" type="submit" onClick={searchHandler}/>
+            <input id="SearchInput" type="text" placeholder="Enter Track here..." onChange={updateSearchTerm} />
+            <button className="btn btn-square" onClick={searchHandler}>Search</button>
         </div>
     )
 }

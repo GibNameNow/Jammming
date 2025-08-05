@@ -15,11 +15,11 @@ const ListElement = (props) => {
     const renderAction = () => {
         if(props.isAddAction){
             return (
-                <button onClick={triggerAction}>+</button>
+                <button className="btn btn-circular btn-add" onClick={triggerAction}>+</button>
             );
         }
         return (
-            <button onClick={triggerAction}>-</button>
+            <button className="btn btn-circular btn-remove" onClick={triggerAction}>-</button>
         );
     }
 
@@ -27,7 +27,7 @@ const ListElement = (props) => {
         <div className="ListElement">
             <div className="content">
                 <h2>{props.track.name}</h2>
-                <br/>
+                {/* <br/> */}
                 <div>
                     <h3>Made by:{props.track.artist} --- </h3> 
                     <h3>Album: {props.track.album}</h3>
