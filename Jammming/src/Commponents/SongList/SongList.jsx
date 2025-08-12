@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 
 import ListElement from "../ListElement/ListElement";
 import "./SongList.css"
@@ -12,8 +12,7 @@ const SongList = (props) => {
                 return (
                     <ListElement track={track} onAdd={props.onAdd} onRemove={props.onRemove} isAddAction={props.isAddAction}/>
                 );
-            }
-            )
+            })
         }
         </div>
     );

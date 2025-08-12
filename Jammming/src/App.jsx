@@ -36,15 +36,14 @@ function App() {
         setIsPlaylistSelected(true);
       }
     } else {
-      // APICommunication.updatePlaylistName(playlistName);
+      APICommunication.updatePlaylistName(playlistName);
     }
-  }, [playlistName, tracksPlaylist]);   //playlistName  muss hier included werden damit sichergestellt wird das die aktuellste value in der function geupdated wird.
+  }, [playlistName, tracksPlaylist]);
 
   const updatePlaylistName = useCallback((event) => {
-    console.log('NAME Will BE: ' + event.target.value);
     setPlaylistName(event.target.value);
-    console.log('NAME IS: ' + App.playlistName);
-  }, []); //GLAUB EMPTY LASSEN ---> TESTEN!
+    APICommunication.updatePlaylistName(playlistName);
+  }, []);
 
   return (
     <div>
@@ -57,7 +56,6 @@ function App() {
           <SongList searchResults={searchResults} onAdd={addTrack} isAddAction={true}></SongList>
           <SongList searchResults={tracksPlaylist} onRemove={removeTrack} isAddAction={false}></SongList>
         </div>
-        
         {
           tracksPlaylist.length > 0 && (
             <div className='CreatePlaylist'> 
