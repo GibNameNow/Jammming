@@ -15,6 +15,10 @@ function App() {
     APICommunication.search(searchTerm).then(setSearchResults);
   });
 
+  const restoreSearchValue = useCallback (() => {
+    return APICommunication.getSpotifyStateFromUrl();
+  });
+
   const addTrack = useCallback((track) => {
     setTracksPlaylist((prevTracks) => [ ...prevTracks, track]);
   });
@@ -49,7 +53,7 @@ function App() {
     <div>
       <header>
         <h1>Playlist Creator</h1>
-        <SearchBox onSearch={search}></SearchBox>
+        <SearchBox onSearch={search} restoreSearchValue={restoreSearchValue}></SearchBox>
       </header>
       <main>
         <div className='Lists'>

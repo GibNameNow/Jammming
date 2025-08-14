@@ -14,7 +14,7 @@ function getAuthHeaders() {
 
 const APICommunication = {
   
-  getAuthenticationCode(){
+  getAuthenticationCode(state){
     if(!client_id || client_id ===''){
       throw new Error(' Client ID not correct: ' + client_id);
     }
@@ -24,19 +24,20 @@ const APICommunication = {
     authenticationURL += `&response_type=code`;
     authenticationURL += `&scope=playlist-modify-public`;
     authenticationURL += `&redirect_uri=${redirect_uri}`;
+    authenticationURL += `&state=${state}`;
     window.location = authenticationURL;
   },
 
-  async requestAccessToken(){
+  async requestAccessToken(state){
 
     if(accessToken !== ''){
       return true;
     }
 
-    const authCodeMatch = window.location.href.match(/code=([^&]*)/);
+    const authCodeMatch = window.location.href.match(/code=([^&]*)/);    
 
     if(!authCodeMatch){
-      APICommunication.getAuthenticationCode();
+      APICommunication.getAuthenticationCode(state);
     }
 
     const tokenEndpoint = 'https://accounts.spotify.com/api/token';
@@ -70,8 +71,16 @@ const APICommunication = {
     .catch(err => console.error('Token request error:', err));
   },
 
+  getSpotifyStateFromUrl() {
+    const stateMatch = window.location.href.match(/state=([^&]*)/);   
+
+    if(stateMatch){
+      return stateMatch[1];
+    }
+  },
+
   async search(searchTerm){
-    const success = await APICommunication.requestAccessToken();
+    const success = await APICommunication.requestAccessToken(searchTerm);
     
     if(success !== true){
       throw Error("FAILED to request AccessToken");
